@@ -49,3 +49,19 @@
 .photos__like:active {
   color: #000;
 }
+
+@media screen and (max-width: 1024px) {
+  .photos {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .photos {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 20px;
+    width: 88.125%;
+  }
+}

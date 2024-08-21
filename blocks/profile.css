@@ -55,3 +55,18 @@
   width: 14.67%;
   height: 50%;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 544px) {
+  .profile {
+    width: 88.125%;
+    padding-top: 42px;
+    padding-bottom: 36px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -11,3 +11,13 @@
   font-size: 1.125em;
   line-height: 1.21;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 544px) {
+  .footer {
+    padding-top: 50px;
+    padding-bottom: 36px;
+  }
+}
