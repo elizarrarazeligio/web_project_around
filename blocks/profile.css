@@ -1,0 +1,52 @@
+.profile {
+  width: 68.75%;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__image {
+  width: 13.636%;
+  height: 13.636%;
+  border-radius: 50%;
+}
+
+.profile__info {
+  justify-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
+  margin-left: 3.41%;
+}
+
+.profile__name {
+  font-weight: 500;
+  font-size: 2.625em;
+  line-height: 1.1429;
+  margin: 0 0 16px;
+}
+
+.profile__hobby {
+  font-weight: 400;
+  font-size: 1.125em;
+  line-height: 1.21;
+}
+
+.profile__button {
+  width: 17.045%;
+  height: 10%;
+  border: solid 2px #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__image-button {
+  width: 14.67%;
+  height: 50%;
+}
