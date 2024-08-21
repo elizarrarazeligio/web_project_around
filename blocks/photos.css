@@ -36,4 +36,13 @@
 .photos__like {
   margin-left: auto;
   margin-right: 18px;
+  cursor: pointer;
+}
+
+.photos__like:hover {
+  opacity: 50%;
+}
+
+.photos__like:active {
+  color: #000;
 }

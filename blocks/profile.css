@@ -44,6 +44,11 @@
   justify-content: center;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.profile__button:hover {
+  opacity: 60%;
 }
 
 .profile__image-button {
