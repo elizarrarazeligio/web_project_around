@@ -31,6 +31,9 @@
   font-size: 1.5em;
   line-height: 1.2104;
   margin-left: 21px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .photos__like {
