@@ -1,4 +1,4 @@
 @font-face {
-  src: url(fonts/Inter/Inter-VariableFont_opsz\wght.ttf);
+  src: url(./fonts/web/InterVariable.woff2) format(woff2);
   font-family: "Inter";
 }

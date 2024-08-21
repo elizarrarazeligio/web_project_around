@@ -24,16 +24,16 @@
   height: 79px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  column-gap: 8px;
 }
 
 .photos__place {
   font-weight: 900;
   font-size: 1.5em;
   line-height: 1.2104;
+  margin-left: 21px;
 }
 
 .photos__like {
-  margin-top: 5px;
+  margin-left: auto;
+  margin-right: 18px;
 }
