@@ -1,0 +1,13 @@
+.footer {
+  width: 68.75%;
+  margin: auto;
+  padding-top: 67px;
+  padding-bottom: 60px;
+}
+
+.footer__copyright {
+  color: #545454;
+  font-weight: 400;
+  font-size: 1.125em;
+  line-height: 1.21;
+}
