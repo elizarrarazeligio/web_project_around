@@ -1,0 +1,39 @@
+.photos {
+  display: grid;
+  gap: 20px 17px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 68.75%;
+  margin: auto;
+}
+
+.photos__card {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.photos__image {
+  width: 100%;
+}
+
+.photos__heading {
+  background-color: #fff;
+  color: #000;
+  height: 79px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+}
+
+.photos__place {
+  font-weight: 900;
+  font-size: 1.5em;
+  line-height: 1.2104;
+}
+
+.photos__like {
+  margin-top: 5px;
+}
