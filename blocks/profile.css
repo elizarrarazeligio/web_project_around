@@ -4,7 +4,6 @@
   padding-bottom: 50px;
   margin: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -38,12 +37,13 @@
 }
 
 .profile__button {
-  width: 17.045%;
-  height: 10%;
+  width: 150px;
+  height: 50px;
   border: solid 2px #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
 }
 
 .profile__image-button {
