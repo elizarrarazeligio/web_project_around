@@ -13,11 +13,20 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .footer {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 544px) {
   .footer {
+    width: 88.125%;
     padding-top: 50px;
     padding-bottom: 36px;
+  }
+
+  .footer__copyright {
+    font-size: 0.875em;
+    line-height: 1.21;
   }
 }

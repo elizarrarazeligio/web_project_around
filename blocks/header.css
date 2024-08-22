@@ -7,7 +7,6 @@
 }
 
 .header__logo {
-  height: 3.75%;
   width: 19.66%;
 }
 
@@ -15,4 +14,23 @@
   padding-top: 4.66%;
   width: 100%;
   border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 544px) {
+  .header {
+    padding-top: 28px;
+    width: 100%;
+  }
+
+  .header__logo {
+    width: 39.375%;
+    margin-left: 8.4375%;
+  }
+
+  .header__line {
+    padding-top: 10%;
+  }
 }

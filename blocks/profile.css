@@ -14,12 +14,9 @@
 }
 
 .profile__info {
-  justify-self: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  width: fit-content;
   margin-left: 3.41%;
 }
 
@@ -37,7 +34,7 @@
 }
 
 .profile__button {
-  width: 150px;
+  width: 17.045%;
   height: 50px;
   border: solid 2px #fff;
   display: flex;
@@ -52,11 +49,13 @@
 }
 
 .profile__image-button {
-  width: 14.67%;
-  height: 50%;
+  width: 22px;
 }
 
 @media screen and (max-width: 1024px) {
+  .profile {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 544px) {
@@ -64,9 +63,37 @@
     width: 88.125%;
     padding-top: 42px;
     padding-bottom: 36px;
-    margin: auto;
-    display: flex;
     flex-direction: column;
+  }
+
+  .profile__image {
+    width: 37.5%;
+    height: 37.5%;
+  }
+
+  .profile__info {
+    padding-top: 30px;
+    padding-bottom: 36px;
+    margin-left: 0;
     align-items: center;
+  }
+
+  .profile__name {
+    font-size: 1.375em;
+    line-height: 1.2105;
+    margin-bottom: 14px;
+  }
+
+  .profile__hobby {
+    font-size: 0.875em;
+  }
+
+  .profile__button {
+    width: 100%;
+    margin: 0;
+  }
+
+  .profile__image-button {
+    width: 16px;
   }
 }

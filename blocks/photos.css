@@ -47,13 +47,15 @@
 }
 
 .photos__like:active {
-  color: #000;
+  filter: brightness(0%);
+  fill: black;
 }
 
 @media screen and (max-width: 1024px) {
   .photos {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    width: 80%;
   }
 }
 
