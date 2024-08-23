@@ -47,8 +47,8 @@
 }
 
 .photos__like:active {
-  filter: brightness(0%);
-  fill: black;
+  background-image: url(../images/boton_like-black.svg);
+  opacity: 100%;
 }
 
 @media screen and (max-width: 1024px) {
