@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -39,4 +39,23 @@
 
 .popup__form {
   margin: 0 auto;
+}
+
+@media screen and (max-width: 544px) {
+  .popup__container {
+    width: 282px;
+    height: 322px;
+  }
+
+  .popup__close {
+    top: -35px;
+    right: 0;
+    width: 20px;
+  }
+
+  .popup__title {
+    font-size: 1.125em;
+    line-height: 1.21;
+    margin: 25px 0 76px 22px;
+  }
 }
