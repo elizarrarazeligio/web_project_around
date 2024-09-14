@@ -1,5 +1,6 @@
 .profile {
   width: 68.75%;
+  max-width: 880px;
   padding-top: 40px;
   padding-bottom: 50px;
   margin: auto;
@@ -83,6 +84,7 @@
 @media screen and (max-width: 1024px) {
   .profile {
     width: 80%;
+    max-width: 581px;
     flex-wrap: wrap;
   }
 
