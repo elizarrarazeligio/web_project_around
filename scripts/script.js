@@ -1,13 +1,21 @@
+// Referenciar los objetos del DOM para utilizarlos
 const editButton = document.querySelector(".profile__edit");
-const closeButton = document.querySelector(".popup__close");
-const saveButton = document.querySelector(".form__button");
-const popUp = document.querySelector(".popup");
-const formProfile = document.querySelector(".form");
+const addButton = document.querySelector(".profile__add");
+const popUpProfile = document.querySelector("#popup-profile");
+const saveButtonProfile = popUpProfile.querySelector(".form__button");
+const popUpImage = document.querySelector("#popup-image");
+const saveButtonImage = popUpImage.querySelector(".form__button");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
+const photoSection = document.querySelector(".photos");
+const closeButtons = document.querySelectorAll(".popup__close");
+
+// Constante asignadas a los inputs de ambos popups
 const nameInput = document.querySelector(".form__input_type_name");
 const jobInput = document.querySelector(".form__input_type_job");
-const photoSection = document.querySelector(".photos");
+const linkInput = document.querySelector(".form__input_type_link");
+const placeInput = document.querySelector(".form__input_type_place");
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -35,41 +43,72 @@ const initialCards = [
   },
 ];
 
+// Generación de cartas principales
 initialCards.forEach((card) => {
-  addPosts(card);
+  const newPost = addPosts(card.name, card.link);
+  photoSection.append(newPost);
 });
 
-function openClosePopup() {
-  popUp.classList.toggle("popup_opened");
+// Función para añadir nuevas cartas / posts
+function addPosts(name, link) {
+  const cardTemplate = document.querySelector("#cards").content;
 
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-}
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-
-  openClosePopup();
-}
-
-function addPosts(card) {
-  const cards = document.querySelector("#cards").content;
-
-  const post = cards.querySelector(".photos__card").cloneNode(true);
+  const post = cardTemplate.querySelector(".photos__card").cloneNode(true);
   const image = post.querySelector(".photos__image");
-  image.src = card.link;
-  image.alt = `Imagen de ${card.name}`;
-  post.querySelector(".photos__place").textContent = card.name;
+  image.src = link;
+  image.alt = `Imagen de ${name}`;
+  post.querySelector(".photos__place").textContent = name;
   post.querySelector(".photos__like").src = "./images/boton_like.svg";
 
-  photoSection.append(post);
+  return post;
 }
 
-// addButton.addEventListener("click", function () {});
+// Funciones para abrir y cerrar formularios
+function openPopUp(popup) {
+  popup.classList.add("popup_opened");
+}
 
-editButton.addEventListener("click", openClosePopup);
-closeButton.addEventListener("click", openClosePopup);
-formProfile.addEventListener("submit", handleProfileFormSubmit);
+function closePopUp(popup) {
+  popup.classList.remove("popup_opened");
+}
+
+// Event Listeners para abrir y cerrar formularios
+editButton.addEventListener("click", function () {
+  openPopUp(popUpProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
+
+saveButtonProfile.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopUp(popUpProfile);
+});
+
+addButton.addEventListener("click", function () {
+  placeInput.value = "";
+  linkInput.value = "";
+  openPopUp(popUpImage);
+});
+
+saveButtonImage.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  const newPost = addPosts(placeInput.value, linkInput.value);
+  photoSection.prepend(newPost);
+  closePopUp(popUpImage);
+});
+
+closeButtons.forEach((item) => {
+  item.addEventListener("click", function () {
+    closePopUp(popUpImage);
+    closePopUp(popUpProfile);
+  });
+});
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopUp(popUpImage);
+    closePopUp(popUpProfile);
+  }
+});

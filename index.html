@@ -59,7 +59,7 @@
 
         <section class="photos"></section>
 
-        <section class="popup">
+        <section class="popup" id="popup-profile">
           <div class="popup__container">
             <img
               src="./images/close_icon.svg"
@@ -67,7 +67,7 @@
               class="popup__close"
             />
             <h2 class="popup__title">Editar perfil</h2>
-            <form action="" class="form popup__form">
+            <form class="form popup__form">
               <fieldset class="form__profile-info">
                 <input
                   class="form__input form__input_type_name"
@@ -78,8 +78,36 @@
                 <input
                   class="form__input form__input_type_job"
                   type="text"
-                  name="about-profile"
+                  name="profile-about"
                   placeholder="Acerca de mí"
+                />
+              </fieldset>
+              <button class="form__button" type="submit">Guardar</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="popup" id="popup-image">
+          <div class="popup__container">
+            <img
+              src="./images/close_icon.svg"
+              alt="Botón cerrar formulario"
+              class="popup__close"
+            />
+            <h2 class="popup__title">Nuevo lugar</h2>
+            <form class="form popup__form">
+              <fieldset class="form__profile-info">
+                <input
+                  class="form__input form__input_type_place"
+                  type="text"
+                  name="image-name"
+                  placeholder="Lugar"
+                />
+                <input
+                  class="form__input form__input_type_link"
+                  type="url"
+                  name="image-link"
+                  placeholder="URL de imagen"
                 />
               </fieldset>
               <button class="form__button" type="submit">Guardar</button>
