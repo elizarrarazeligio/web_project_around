@@ -87,7 +87,7 @@
           </div>
         </section>
 
-        <section class="popup" id="popup-image">
+        <section class="popup" id="popup-add">
           <div class="popup__container">
             <img
               src="./images/close_icon.svg"
@@ -114,6 +114,22 @@
             </form>
           </div>
         </section>
+
+        <section class="popup" id="popup-image">
+          <div class="popup__content">
+            <img
+              src="./images/close_icon.svg"
+              alt="Botón cerrar formulario"
+              class="popup__close"
+            />
+            <img
+              src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg"
+              alt=""
+              class="popup__image"
+            />
+            <h2 class="popup__place">Hola</h2>
+          </div>
+        </section>
       </main>
 
       <footer class="footer">
@@ -126,6 +142,11 @@
     <template id="cards">
       <div class="photos__card">
         <img class="photos__image" />
+        <img
+          src="./images/trash.png"
+          alt="Botón para remover"
+          class="photos__trash"
+        />
         <div class="photos__heading">
           <h2 class="photos__place"></h2>
           <img class="photos__like" />

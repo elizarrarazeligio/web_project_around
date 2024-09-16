@@ -13,11 +13,23 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
 }
 
 .photos__image {
   width: 282px;
   height: 282px;
+}
+
+.photos__trash {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.photos__trash:hover {
+  opacity: 50%;
 }
 
 .photos__heading {
@@ -48,7 +60,7 @@
   opacity: 50%;
 }
 
-.photos__like:active {
+.photos__like_active {
   background-image: url(../images/boton_like-black.svg);
   opacity: 100%;
 }

@@ -3,8 +3,9 @@ const editButton = document.querySelector(".profile__edit");
 const addButton = document.querySelector(".profile__add");
 const popUpProfile = document.querySelector("#popup-profile");
 const saveButtonProfile = popUpProfile.querySelector(".form__button");
+const popUpAddPost = document.querySelector("#popup-add");
+const saveButtonImage = popUpAddPost.querySelector(".form__button");
 const popUpImage = document.querySelector("#popup-image");
-const saveButtonImage = popUpImage.querySelector(".form__button");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
 const photoSection = document.querySelector(".photos");
@@ -57,8 +58,20 @@ function addPosts(name, link) {
   const image = post.querySelector(".photos__image");
   image.src = link;
   image.alt = `Imagen de ${name}`;
+
   post.querySelector(".photos__place").textContent = name;
   post.querySelector(".photos__like").src = "./images/boton_like.svg";
+  post.querySelector(".photos__trash").addEventListener("click", function () {
+    post.remove();
+  });
+  post.querySelector(".photos__like").addEventListener("click", function (evt) {
+    evt.target.classList.toggle("photos__like_active");
+  });
+  image.addEventListener("click", function () {
+    openPopUp(popUpImage);
+    popUpImage.querySelector(".popup__image").src = link;
+    popUpImage.querySelector(".popup__place").textContent = name;
+  });
 
   return post;
 }
@@ -89,26 +102,28 @@ saveButtonProfile.addEventListener("click", function (evt) {
 addButton.addEventListener("click", function () {
   placeInput.value = "";
   linkInput.value = "";
-  openPopUp(popUpImage);
+  openPopUp(popUpAddPost);
 });
 
 saveButtonImage.addEventListener("click", function (evt) {
   evt.preventDefault();
   const newPost = addPosts(placeInput.value, linkInput.value);
   photoSection.prepend(newPost);
-  closePopUp(popUpImage);
+  closePopUp(popUpAddPost);
 });
 
 closeButtons.forEach((item) => {
   item.addEventListener("click", function () {
-    closePopUp(popUpImage);
+    closePopUp(popUpAddPost);
     closePopUp(popUpProfile);
+    closePopUp(popUpImage);
   });
 });
 
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    closePopUp(popUpImage);
+    closePopUp(popUpAddPost);
     closePopUp(popUpProfile);
+    closePopUp(popUpImage);
   }
 });
