@@ -80,10 +80,22 @@ function addPosts(name, link) {
 // Funciones para abrir y cerrar formularios
 function openPopUp(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopUp(popup);
+    }
+  });
+  document.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopUp(popup);
+    }
+  });
 }
 
 function closePopUp(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopUp);
+  document.removeEventListener("click", closePopUp);
 }
 
 // Event Listeners para abrir y guardar formularios
@@ -117,27 +129,11 @@ saveButtonImage.addEventListener("click", function (evt) {
   closePopUp(popUpAddPost);
 });
 
-//Event Listeners para cerrar formularios
+//Event Listener para cerrar formularios
 closeButtons.forEach((item) => {
   item.addEventListener("click", function () {
     closePopUp(popUpAddPost);
     closePopUp(popUpProfile);
     closePopUp(popUpImage);
   });
-});
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    closePopUp(popUpAddPost);
-    closePopUp(popUpProfile);
-    closePopUp(popUpImage);
-  }
-});
-
-document.addEventListener("click", function (evt) {
-  if (evt.target.classList.contains("popup_opened")) {
-    closePopUp(popUpAddPost);
-    closePopUp(popUpProfile);
-    closePopUp(popUpImage);
-  }
 });
