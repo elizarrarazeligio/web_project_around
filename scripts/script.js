@@ -70,6 +70,7 @@ function addPosts(name, link) {
   image.addEventListener("click", function () {
     openPopUp(popUpImage);
     popUpImage.querySelector(".popup__image").src = link;
+    popUpImage.querySelector(".popup__image").alt = `Imagen de ${name}`;
     popUpImage.querySelector(".popup__place").textContent = name;
   });
 
