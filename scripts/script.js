@@ -90,6 +90,8 @@ editButton.addEventListener("click", function () {
   openPopUp(popUpProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  // Función para validación al abrir formulario
+  enableValidation();
 });
 
 saveButtonProfile.addEventListener("click", function (evt) {
@@ -103,6 +105,8 @@ addButton.addEventListener("click", function () {
   placeInput.value = "";
   linkInput.value = "";
   openPopUp(popUpAddPost);
+  // Función para validación al abrir formulario
+  enableValidation();
 });
 
 saveButtonImage.addEventListener("click", function (evt) {
