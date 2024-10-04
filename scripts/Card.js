@@ -1,4 +1,7 @@
-export class Card {
+import { openPopUp, closePopUp } from "./script.js";
+const popUpImage = document.querySelector("#popup-image");
+
+export default class Card {
   constructor(text, image, cardSelector) {
     this._text = text;
     this._image = image;
@@ -33,8 +36,8 @@ export class Card {
   _setEventListeners() {
     this._element
       .querySelector(".photos__like")
-      .addEventListener("click", function (evt) {
-        evt.target.classList.toggle("photos__like_active");
+      .addEventListener("click", (evt) => {
+        this._handleLikeButton(evt);
       });
 
     this._element
@@ -42,13 +45,22 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDeleteButton();
       });
+
+    this._element
+      .querySelector(".photos__image")
+      .addEventListener("click", () => {
+        popUpImage.querySelector(".popup__image").src = this._image;
+        popUpImage.querySelector(
+          ".popup__image"
+        ).alt = `Imagen de ${this._text}`;
+        popUpImage.querySelector(".popup__place").textContent = this._text;
+        openPopUp(popUpImage);
+      });
   }
 
-  // _handleLikeButton() {
-  //   this._element
-  //     .querySelector(".photos__like")
-  //     .classList.toggle("photos__like_active");
-  // }
+  _handleLikeButton(evt) {
+    evt.target.classList.toggle("photos__like_active");
+  }
 
   _handleDeleteButton() {
     this._element.remove();

@@ -1,3 +1,6 @@
+// Importar archivos JS
+import Card from "./Card.js";
+
 // Referenciar los objetos del DOM para utilizarlos
 const editButton = document.querySelector(".profile__edit");
 const addButton = document.querySelector(".profile__add");
@@ -5,7 +8,7 @@ const popUpProfile = document.querySelector("#popup-profile");
 const saveButtonProfile = popUpProfile.querySelector(".form__button");
 const popUpAddPost = document.querySelector("#popup-add");
 const saveButtonImage = popUpAddPost.querySelector(".form__button");
-const popUpImage = document.querySelector("#popup-image");
+
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
 const photoSection = document.querySelector(".photos");
@@ -46,9 +49,15 @@ const initialCards = [
 
 // Generación de cartas principales
 initialCards.forEach((card) => {
-  const newPost = addPosts(card.name, card.link);
-  photoSection.append(newPost);
+  const newCard = new Card(card.name, card.link, "#cards");
+  const cardElement = newCard.generateCard();
+  photoSection.append(cardElement);
 });
+
+// initialCards.forEach((card) => {
+//   const newPost = addPosts(card.name, card.link);
+//   photoSection.append(newPost);
+// });
 
 // Función para añadir nuevas cartas / posts
 function addPosts(name, link) {
@@ -79,6 +88,7 @@ function addPosts(name, link) {
 // Funciones para abrir y cerrar formularios
 function openPopUp(popup) {
   popup.classList.add("popup_opened");
+
   document.addEventListener("keydown", function (evt) {
     if (evt.key === "Escape") {
       closePopUp(popup);
@@ -89,12 +99,18 @@ function openPopUp(popup) {
       closePopUp(popup);
     }
   });
+  popup
+    .querySelector(".popup__close")
+    .addEventListener("click", function (evt) {
+      closePopUp(popup);
+    });
 }
 
 function closePopUp(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopUp);
   document.removeEventListener("click", closePopUp);
+  popup.querySelector(".popup__close").removeEventListener("click", closePopUp);
 }
 
 // Event Listeners para abrir y guardar formularios
@@ -133,6 +149,8 @@ closeButtons.forEach((item) => {
   item.addEventListener("click", function () {
     closePopUp(popUpAddPost);
     closePopUp(popUpProfile);
-    closePopUp(popUpImage);
+    //closePopUp(popUpImage);
   });
 });
+
+export { openPopUp, closePopUp };
