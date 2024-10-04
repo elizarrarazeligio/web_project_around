@@ -1,6 +1,10 @@
-import { openPopUp, closePopUp } from "./script.js";
+// Importar archivos JS
+import { openPopUp, closePopUp } from "./utils.js";
+
+// ID de PopUp de imágenes
 const popUpImage = document.querySelector("#popup-image");
 
+// Clase Card para generación de imágenes
 export default class Card {
   constructor(text, image, cardSelector) {
     this._text = text;
@@ -58,10 +62,12 @@ export default class Card {
       });
   }
 
+  // Funcionalidad del botón Like
   _handleLikeButton(evt) {
     evt.target.classList.toggle("photos__like_active");
   }
 
+  // Funcionalidad del botón Delete
   _handleDeleteButton() {
     this._element.remove();
   }

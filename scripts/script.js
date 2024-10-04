@@ -1,25 +1,29 @@
 // Importar archivos JS
 import Card from "./Card.js";
+import { openPopUp, closePopUp } from "./utils.js";
 
-// Referenciar los objetos del DOM para utilizarlos
-const editButton = document.querySelector(".profile__edit");
-const addButton = document.querySelector(".profile__add");
+// IDs de PopUps
 const popUpProfile = document.querySelector("#popup-profile");
-const saveButtonProfile = popUpProfile.querySelector(".form__button");
 const popUpAddPost = document.querySelector("#popup-add");
-const saveButtonImage = popUpAddPost.querySelector(".form__button");
 
+// Botones para editar perfil y añadir imágenes
+const editProfileButton = document.querySelector(".profile__edit");
+const saveButtonEditProfile = popUpProfile.querySelector(".form__button");
+const addImageButton = document.querySelector(".profile__add");
+const saveButtonAddImage = popUpAddPost.querySelector(".form__button");
+
+// Elementos del marcado a modificar
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
 const photoSection = document.querySelector(".photos");
-const closeButtons = document.querySelectorAll(".popup__close");
 
-// Constante asignadas a los inputs de ambos popups
+// Campos de entrada (inputs) de PopUps
 const nameInput = document.querySelector(".form__input_type_name");
 const jobInput = document.querySelector(".form__input_type_job");
 const linkInput = document.querySelector(".form__input_type_link");
 const placeInput = document.querySelector(".form__input_type_place");
 
+// Constante con información de cartas iniciales
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -47,74 +51,24 @@ const initialCards = [
   },
 ];
 
-// Generación de cartas principales
+// Generación de cartas iniciales
 initialCards.forEach((card) => {
   const newCard = new Card(card.name, card.link, "#cards");
   const cardElement = newCard.generateCard();
   photoSection.append(cardElement);
 });
 
-// initialCards.forEach((card) => {
-//   const newPost = addPosts(card.name, card.link);
-//   photoSection.append(newPost);
-// });
-
-// Función para añadir nuevas cartas / posts
-function addPosts(name, link) {
-  const cardTemplate = document.querySelector("#cards").content;
-
-  const post = cardTemplate.querySelector(".photos__card").cloneNode(true);
-  const image = post.querySelector(".photos__image");
-  image.src = link;
-  image.alt = `Imagen de ${name}`;
-  post.querySelector(".photos__place").textContent = name;
-
-  post.querySelector(".photos__trash").addEventListener("click", function () {
-    post.remove();
-  });
-  post.querySelector(".photos__like").addEventListener("click", function (evt) {
-    evt.target.classList.toggle("photos__like_active");
-  });
-  image.addEventListener("click", function () {
-    openPopUp(popUpImage);
-    popUpImage.querySelector(".popup__image").src = link;
-    popUpImage.querySelector(".popup__image").alt = `Imagen de ${name}`;
-    popUpImage.querySelector(".popup__place").textContent = name;
-  });
-
-  return post;
-}
-
-// Funciones para abrir y cerrar formularios
-function openPopUp(popup) {
-  popup.classList.add("popup_opened");
-
-  document.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      closePopUp(popup);
-    }
-  });
-  document.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopUp(popup);
-    }
-  });
-  popup
-    .querySelector(".popup__close")
-    .addEventListener("click", function (evt) {
-      closePopUp(popup);
-    });
-}
-
-function closePopUp(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closePopUp);
-  document.removeEventListener("click", closePopUp);
-  popup.querySelector(".popup__close").removeEventListener("click", closePopUp);
-}
+// Generación de instancias Card a partir de datos en formulario Add Image
+saveButtonAddImage.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  const newCard = new Card(placeInput.value, linkInput.value, "#cards");
+  const cardElement = newCard.generateCard();
+  photoSection.prepend(cardElement);
+  closePopUp(popUpAddPost);
+});
 
 // Event Listeners para abrir y guardar formularios
-editButton.addEventListener("click", function () {
+editProfileButton.addEventListener("click", function () {
   openPopUp(popUpProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -122,35 +76,17 @@ editButton.addEventListener("click", function () {
   enableValidation();
 });
 
-saveButtonProfile.addEventListener("click", function (evt) {
+saveButtonEditProfile.addEventListener("click", function (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopUp(popUpProfile);
 });
 
-addButton.addEventListener("click", function () {
+addImageButton.addEventListener("click", function () {
   placeInput.value = "";
   linkInput.value = "";
   openPopUp(popUpAddPost);
   // Función para validación al abrir formulario
   enableValidation();
 });
-
-saveButtonImage.addEventListener("click", function (evt) {
-  evt.preventDefault();
-  const newPost = addPosts(placeInput.value, linkInput.value);
-  photoSection.prepend(newPost);
-  closePopUp(popUpAddPost);
-});
-
-//Event Listener para cerrar formularios
-closeButtons.forEach((item) => {
-  item.addEventListener("click", function () {
-    closePopUp(popUpAddPost);
-    closePopUp(popUpProfile);
-    //closePopUp(popUpImage);
-  });
-});
-
-export { openPopUp, closePopUp };
