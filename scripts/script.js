@@ -58,9 +58,8 @@ function addPosts(name, link) {
   const image = post.querySelector(".photos__image");
   image.src = link;
   image.alt = `Imagen de ${name}`;
-
   post.querySelector(".photos__place").textContent = name;
-  post.querySelector(".photos__like").src = "./images/boton_like.svg";
+
   post.querySelector(".photos__trash").addEventListener("click", function () {
     post.remove();
   });
