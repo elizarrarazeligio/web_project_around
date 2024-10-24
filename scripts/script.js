@@ -1,6 +1,7 @@
 // Importar archivos JS
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 
 // Referencia a sección para añadir imágenes
 const photoSection = document.querySelector(".photos");
@@ -43,12 +44,20 @@ const configParameters = {
   errorSpanText: "form__input-error_active",
 };
 
-// Generación de cartas iniciales
-initialCards.forEach((card) => {
-  const newCard = new Card(card.name, card.link, "#cards");
-  const cardElement = newCard.generateCard();
-  photoSection.append(cardElement);
-});
+// Generación de cartas iniciales de sección de fotos
+// Acoplamiento débil (Loose Coupling)
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (cardItem) => {
+      const newCard = new Card(cardItem.name, cardItem.link, "#cards");
+      const cardElement = newCard.generateCard();
+      cardList.addItem(cardElement);
+    },
+  },
+  ".photos"
+);
+cardList.renderItems();
 
 // Generación de instancias FormValidator para validación de formularios
 let newValidations = [];
