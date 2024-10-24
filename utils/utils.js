@@ -1,26 +1,21 @@
 // Importar variable, dunción y clase
-import { newValidations, photoSection } from "./script.js";
-import Card from "./Card.js";
-
-// IDs de PopUps
-const popUpProfile = document.querySelector("#popup-profile");
-const popUpAddPost = document.querySelector("#popup-add");
-
-// Botones para editar perfil y añadir imágenes
-const editProfileButton = document.querySelector(".profile__edit");
-const saveButtonEditProfile = popUpProfile.querySelector(".form__button");
-const addImageButton = document.querySelector(".profile__add");
-const saveButtonAddImage = popUpAddPost.querySelector(".form__button");
-
-// Elementos del marcado a modificar
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__hobby");
-
-// Campos de entrada (inputs) de PopUps
-const nameInput = document.querySelector(".form__input_type_name");
-const jobInput = document.querySelector(".form__input_type_job");
-const linkInput = document.querySelector(".form__input_type_link");
-const placeInput = document.querySelector(".form__input_type_place");
+import { newValidations } from "../scripts/script.js";
+import Card from "../components/Card.js";
+import {
+  popUpProfile,
+  popUpAddPost,
+  editProfileButton,
+  saveButtonEditProfile,
+  addImageButton,
+  saveButtonAddImage,
+  profileName,
+  profileJob,
+  nameInput,
+  jobInput,
+  linkInput,
+  placeInput,
+  photoSection,
+} from "./constants.js";
 
 // Funciones para abrir PopUps (formularios)
 function openPopUp(popup) {
@@ -89,4 +84,4 @@ saveButtonAddImage.addEventListener("click", function (evt) {
   closePopUp(popUpAddPost);
 });
 
-export { openPopUp, closePopUp };
+export { openPopUp };

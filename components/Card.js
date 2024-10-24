@@ -1,5 +1,5 @@
 // Importar archivos JS
-import { openPopUp, closePopUp } from "./utils.js";
+import { openPopUp } from "../utils/utils.js";
 
 // ID de PopUp de imágenes
 const popUpImage = document.querySelector("#popup-image");
