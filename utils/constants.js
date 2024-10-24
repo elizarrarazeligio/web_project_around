@@ -1,10 +1,10 @@
 // IDs de PopUps
-const popUpProfile = document.querySelector("#popup-profile");
+// const popUpProfile = document.querySelector("#popup-profile");
 const popUpAddPost = document.querySelector("#popup-add");
 
 // Botones para editar perfil y añadir imágenes
 const editProfileButton = document.querySelector(".profile__edit");
-const saveButtonEditProfile = popUpProfile.querySelector(".form__button");
+// const saveButtonEditProfile = popUpProfile.querySelector(".form__button");
 const addImageButton = document.querySelector(".profile__add");
 const saveButtonAddImage = popUpAddPost.querySelector(".form__button");
 
@@ -50,10 +50,10 @@ const initialCards = [
 ];
 
 export {
-  popUpProfile,
+  // popUpProfile,
   popUpAddPost,
   editProfileButton,
-  saveButtonEditProfile,
+  // saveButtonEditProfile,
   addImageButton,
   saveButtonAddImage,
   profileName,

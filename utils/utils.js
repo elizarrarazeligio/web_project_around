@@ -1,11 +1,11 @@
-// Importar variable, dunción y clase
+// Importar variable, función y clase
 import { newValidations } from "../scripts/script.js";
 import Card from "../components/Card.js";
 import {
-  popUpProfile,
+  // popUpProfile,
   popUpAddPost,
   editProfileButton,
-  saveButtonEditProfile,
+  // saveButtonEditProfile,
   addImageButton,
   saveButtonAddImage,
   profileName,
@@ -16,6 +16,10 @@ import {
   placeInput,
   photoSection,
 } from "./constants.js";
+
+// Importaciones que van en index.js
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 // Funciones para abrir PopUps (formularios)
 function openPopUp(popup) {
@@ -46,21 +50,26 @@ function closePopUp(popup) {
 }
 
 // Detector de eventos para editar perfil de usuario
-editProfileButton.addEventListener("click", function () {
-  openPopUp(popUpProfile);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  // Función para validación al abrir formulario
-  newValidations[0].enableValidation();
+// editProfileButton.addEventListener("click", function () {
+//   openPopUp(popUpProfile);
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+//   // Función para validación al abrir formulario
+//   newValidations[0].enableValidation();
+// });
+const popUpProfile = new PopupWithForm({}, "#popup-profile");
+popUpProfile.setEventListeners();
+editProfileButton.addEventListener("click", () => {
+  popUpProfile.open();
 });
 
 // Detector de eventos para botón submit de formulario Edit Profile
-saveButtonEditProfile.addEventListener("click", function (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopUp(popUpProfile);
-});
+// saveButtonEditProfile.addEventListener("click", function (evt) {
+//   evt.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileJob.textContent = jobInput.value;
+//   closePopUp(popUpProfile);
+// });
 
 // Detector de eventos para añadir nueva imagen
 addImageButton.addEventListener("click", function () {

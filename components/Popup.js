@@ -1,6 +1,6 @@
-class Popup {
-  constructor({ popupSelector }) {
-    this._popup = popupSelector;
+export default class Popup {
+  constructor(popupSelector) {
+    this._popup = document.querySelector(popupSelector);
   }
 
   // Añade clase para visualizar PopUp
@@ -24,18 +24,13 @@ class Popup {
 
   // Añade detectores de eventos
   setEventListeners() {
-    this._handleEscClose();
     document.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("popup__opened")) {
+      if (evt.target.classList.contains("popup_opened")) {
         this.close();
       }
     });
-    this._popup.querySelector(".popup__close").addEventListener("click", () => {
-      this.close();
-    });
+    this._handleEscClose();
   }
 }
 
 class PopupWithImage extends Popup {}
-
-class PopupWithForm extends Popup {}
