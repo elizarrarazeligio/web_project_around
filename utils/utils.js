@@ -32,11 +32,9 @@ function openPopUp(popup) {
       closePopUp(popup);
     }
   });
-  popup
-    .querySelector(".popup__close")
-    .addEventListener("click", function (evt) {
-      closePopUp(popup);
-    });
+  popup.querySelector(".popup__close").addEventListener("click", () => {
+    closePopUp(popup);
+  });
 }
 
 // Función para cerrar PopUps (formularios) y quitar detectores de eventos
