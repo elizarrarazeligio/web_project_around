@@ -6,9 +6,10 @@ const popUpImage = document.querySelector("#popup-image");
 
 // Clase Card para generación de imágenes
 export default class Card {
-  constructor(text, image, cardSelector) {
+  constructor({ text, image, handleCardClick }, cardSelector) {
     this._text = text;
     this._image = image;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
@@ -53,12 +54,13 @@ export default class Card {
     this._element
       .querySelector(".photos__image")
       .addEventListener("click", () => {
-        popUpImage.querySelector(".popup__image").src = this._image;
-        popUpImage.querySelector(
-          ".popup__image"
-        ).alt = `Imagen de ${this._text}`;
-        popUpImage.querySelector(".popup__place").textContent = this._text;
-        openPopUp(popUpImage);
+        // popUpImage.querySelector(".popup__image").src = this._image;
+        // popUpImage.querySelector(
+        //   ".popup__image"
+        // ).alt = `Imagen de ${this._text}`;
+        // popUpImage.querySelector(".popup__place").textContent = this._text;
+        // openPopUp(popUpImage);
+        this._handleCardClick();
       });
   }
 

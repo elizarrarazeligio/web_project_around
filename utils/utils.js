@@ -3,11 +3,11 @@ import { newValidations } from "../scripts/script.js";
 import Card from "../components/Card.js";
 import {
   // popUpProfile,
-  popUpAddPost,
+  // popUpAddPost,
   editProfileButton,
   // saveButtonEditProfile,
   addImageButton,
-  saveButtonAddImage,
+  // saveButtonAddImage,
   profileName,
   profileJob,
   nameInput,
@@ -18,8 +18,8 @@ import {
 } from "./constants.js";
 
 // Importaciones que van en index.js
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 // Funciones para abrir PopUps (formularios)
 function openPopUp(popup) {
@@ -57,10 +57,18 @@ function closePopUp(popup) {
 //   // Función para validación al abrir formulario
 //   newValidations[0].enableValidation();
 // });
+
+// Detector de eventos para botón submit de formulario Edit Profile
+// saveButtonEditProfile.addEventListener("click", function (evt) {
+//   evt.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileJob.textContent = jobInput.value;
+//   closePopUp(popUpProfile);
+// });
 const popUpProfile = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      console.log(inputValues.key);
+      console.log(inputValues);
     },
   },
   "#popup-profile"
@@ -70,32 +78,35 @@ editProfileButton.addEventListener("click", () => {
   popUpProfile.open();
 });
 
-// Detector de eventos para botón submit de formulario Edit Profile
-// saveButtonEditProfile.addEventListener("click", function (evt) {
-//   evt.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileJob.textContent = jobInput.value;
-//   closePopUp(popUpProfile);
+// Detector de eventos para añadir nueva imagen
+// addImageButton.addEventListener("click", function () {
+//   placeInput.value = "";
+//   linkInput.value = "";
+//   openPopUp(popUpAddPost);
+//   // Función para validación al abrir formulario
+//   newValidations[1].enableValidation();
 // });
 
-// Detector de eventos para añadir nueva imagen
-addImageButton.addEventListener("click", function () {
-  placeInput.value = "";
-  linkInput.value = "";
-  openPopUp(popUpAddPost);
-  // Función para validación al abrir formulario
-  newValidations[1].enableValidation();
-});
-
 // Detector de eventos para botón submit de formulario Add Image
-saveButtonAddImage.addEventListener("click", function (evt) {
-  evt.preventDefault();
+// saveButtonAddImage.addEventListener("click", function (evt) {
+//   evt.preventDefault();
 
-  // Generación de instancias Card a partir de datos en formulario
-  const newCard = new Card(placeInput.value, linkInput.value, "#cards");
-  const cardElement = newCard.generateCard();
-  photoSection.prepend(cardElement);
-  closePopUp(popUpAddPost);
+//   // Generación de instancias Card a partir de datos en formulario
+//   const newCard = new Card(placeInput.value, linkInput.value, "#cards");
+//   const cardElement = newCard.generateCard();
+//   photoSection.prepend(cardElement);
+//   closePopUp(popUpAddPost);
+// });
+
+const popUpAddPost = new PopupWithForm(
+  {
+    sendForm: () => {},
+  },
+  "#popup-add"
+);
+popUpAddPost.setEventListeners();
+addImageButton.addEventListener("click", () => {
+  popUpAddPost.open();
 });
 
 export { openPopUp };

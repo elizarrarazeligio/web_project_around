@@ -37,10 +37,5 @@ export default class PopupWithForm extends Popup {
         this._sendForm(this._getInputValues());
         this.close();
       });
-
-    // Ícono para cerrar PopUp
-    this._popup.querySelector(".popup__close").addEventListener("click", () => {
-      this.close();
-    });
   }
 }

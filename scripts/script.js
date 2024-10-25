@@ -1,6 +1,7 @@
 // Importar archivos JS
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import { initialCards } from "../utils/constants.js";
 
@@ -20,7 +21,24 @@ const cardList = new Section(
   {
     items: initialCards,
     renderer: (cardItem) => {
-      const newCard = new Card(cardItem.name, cardItem.link, "#cards");
+      const newCard = new Card(
+        {
+          text: cardItem.name,
+          image: cardItem.link,
+          handleCardClick: () => {
+            const newImagePopup = new PopupWithImage(
+              {
+                place: cardItem.name,
+                image: cardItem.link,
+              },
+              "#popup-image"
+            );
+            newImagePopup.setEventListeners();
+            newImagePopup.open();
+          },
+        },
+        "#cards"
+      );
       const cardElement = newCard.generateCard();
       cardList.addItem(cardElement);
     },

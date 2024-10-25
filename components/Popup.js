@@ -29,8 +29,12 @@ export default class Popup {
         this.close();
       }
     });
+
+    // Ícono para cerrar PopUp
+    this._popup.querySelector(".popup__close").addEventListener("click", () => {
+      this.close();
+    });
+
     this._handleEscClose();
   }
 }
-
-class PopupWithImage extends Popup {}
