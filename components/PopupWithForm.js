@@ -7,7 +7,17 @@ export default class PopupWithForm extends Popup {
   }
 
   // Recopila los datos de los inputs
-  _getInputValues() {}
+  _getInputValues() {
+    this._inputList = this._popup.querySelectorAll(".form__input");
+    this._inputValues = {};
+
+    // Agrupa los inputs en una lista y añade sus valores en un objeto vacío
+    this._inputList.forEach((input) => {
+      this._inputValues[input.name] = input.value;
+    });
+
+    return this._inputValues;
+  }
 
   // Añade al método padre un reseteo de formulario
   close() {
@@ -24,6 +34,7 @@ export default class PopupWithForm extends Popup {
       .querySelector(".form__button")
       .addEventListener("click", (evt) => {
         evt.preventDefault();
+        this._sendForm(this._getInputValues());
         this.close();
       });
 

@@ -57,7 +57,14 @@ function closePopUp(popup) {
 //   // Función para validación al abrir formulario
 //   newValidations[0].enableValidation();
 // });
-const popUpProfile = new PopupWithForm({}, "#popup-profile");
+const popUpProfile = new PopupWithForm(
+  {
+    sendForm: (inputValues) => {
+      console.log(inputValues.key);
+    },
+  },
+  "#popup-profile"
+);
 popUpProfile.setEventListeners();
 editProfileButton.addEventListener("click", () => {
   popUpProfile.open();
