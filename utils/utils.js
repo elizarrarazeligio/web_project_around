@@ -100,7 +100,28 @@ editProfileButton.addEventListener("click", () => {
 
 const popUpAddPost = new PopupWithForm(
   {
-    sendForm: () => {},
+    sendForm: (inputValues) => {
+      const newCard = new Card(
+        {
+          text: inputValues.name,
+          image: inputValues.link,
+          handleCardClick: () => {
+            const newImagePopup = new PopupWithImage(
+              {
+                place: inputValues.name,
+                image: inputValues.link,
+              },
+              "#popup-image"
+            );
+            newImagePopup.setEventListeners();
+            newImagePopup.open();
+          },
+        },
+        "#cards"
+      );
+      const cardElement = newCard.generateCard();
+      document.querySelector(".photos").prepend(cardElement);
+    },
   },
   "#popup-add"
 );

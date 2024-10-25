@@ -3,7 +3,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
-import { initialCards } from "../utils/constants.js";
+import { initialCards, addImageButton } from "../utils/constants.js";
 
 // Array con formularios y parámetros de configuración
 const formList = Array.from(document.querySelectorAll(".form"));
