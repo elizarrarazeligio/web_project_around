@@ -5,20 +5,15 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import {
-  initialCards,
-  addImageButton,
   editProfileButton,
+  addImageButton,
+  profileName,
+  profileJob,
+  initialCards,
+  formList,
+  configParameters,
+  newValidations,
 } from "../utils/constants.js";
-
-// Array con formularios y parámetros de configuración
-const formList = Array.from(document.querySelectorAll(".form"));
-const configParameters = {
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_inactive",
-  inputErrorClass: "form__input_type_error",
-  errorSpanText: "form__input-error_active",
-};
 
 // Generación de cartas iniciales de sección de fotos
 // Acoplamiento débil (Loose Coupling)
@@ -52,6 +47,11 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
+// Generación de instancias FormValidator para validación de formularios
+formList.forEach((formElement, index) => {
+  newValidations[index] = new FormValidator(configParameters, formElement);
+});
+
 // Generación de PopUp para editar perfil
 const popUpProfile = new PopupWithForm(
   {
@@ -64,6 +64,7 @@ const popUpProfile = new PopupWithForm(
 popUpProfile.setEventListeners();
 editProfileButton.addEventListener("click", () => {
   popUpProfile.open();
+  newValidations[0].enableValidation();
 });
 
 // Generación de PopUp para añadir nuevo Post
@@ -97,12 +98,5 @@ const popUpAddPost = new PopupWithForm(
 popUpAddPost.setEventListeners();
 addImageButton.addEventListener("click", () => {
   popUpAddPost.open();
+  newValidations[1].enableValidation();
 });
-
-// Generación de instancias FormValidator para validación de formularios
-let newValidations = [];
-formList.forEach((formElement, index) => {
-  newValidations[index] = new FormValidator(configParameters, formElement);
-});
-
-export { newValidations };

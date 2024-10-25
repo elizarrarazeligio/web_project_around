@@ -1,25 +1,13 @@
-// IDs de PopUps
-// const popUpProfile = document.querySelector("#popup-profile");
-// const popUpAddPost = document.querySelector("#popup-add");
-
 // Botones para editar perfil y añadir imágenes
 const editProfileButton = document.querySelector(".profile__edit");
-// const saveButtonEditProfile = popUpProfile.querySelector(".form__button");
 const addImageButton = document.querySelector(".profile__add");
-// const saveButtonAddImage = popUpAddPost.querySelector(".form__button");
 
 // Elementos del marcado a modificar
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
 
-// Campos de entrada (inputs) de PopUps
-const nameInput = document.querySelector(".form__input_type_name");
-const jobInput = document.querySelector(".form__input_type_job");
-const linkInput = document.querySelector(".form__input_type_link");
-const placeInput = document.querySelector(".form__input_type_place");
-
-// Referencia a sección para añadir imágenes
-const photoSection = document.querySelector(".photos");
+// Array con formularios y parámetros de configuración
+const formList = Array.from(document.querySelectorAll(".form"));
 
 // Constante con información de cartas iniciales
 const initialCards = [
@@ -49,19 +37,25 @@ const initialCards = [
   },
 ];
 
+// Objeto con parámetros de configuración para validación de formularios
+const configParameters = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorSpanText: "form__input-error_active",
+};
+
+// Array vacío para cada instancia de FromValidator
+let newValidations = [];
+
 export {
-  // popUpProfile,
-  // popUpAddPost,
   editProfileButton,
-  // saveButtonEditProfile,
   addImageButton,
-  // saveButtonAddImage,
   profileName,
   profileJob,
-  nameInput,
-  jobInput,
-  linkInput,
-  placeInput,
-  photoSection,
   initialCards,
+  formList,
+  configParameters,
+  newValidations,
 };

@@ -1,9 +1,3 @@
-// Importar archivos JS
-import { openPopUp } from "../utils/utils.js";
-
-// ID de PopUp de imágenes
-const popUpImage = document.querySelector("#popup-image");
-
 // Clase Card para generación de imágenes
 export default class Card {
   constructor({ text, image, handleCardClick }, cardSelector) {
@@ -54,12 +48,6 @@ export default class Card {
     this._element
       .querySelector(".photos__image")
       .addEventListener("click", () => {
-        // popUpImage.querySelector(".popup__image").src = this._image;
-        // popUpImage.querySelector(
-        //   ".popup__image"
-        // ).alt = `Imagen de ${this._text}`;
-        // popUpImage.querySelector(".popup__place").textContent = this._text;
-        // openPopUp(popUpImage);
         this._handleCardClick();
       });
   }
@@ -71,7 +59,6 @@ export default class Card {
 
   // Funcionalidad del botón Delete
   _handleDeleteButton() {
-    console.log(this._element);
     this._element.remove();
   }
 }
