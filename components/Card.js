@@ -71,6 +71,7 @@ export default class Card {
 
   // Funcionalidad del botón Delete
   _handleDeleteButton() {
+    console.log(this._element);
     this._element.remove();
   }
 }

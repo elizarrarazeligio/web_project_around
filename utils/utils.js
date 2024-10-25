@@ -65,18 +65,6 @@ function closePopUp(popup) {
 //   profileJob.textContent = jobInput.value;
 //   closePopUp(popUpProfile);
 // });
-const popUpProfile = new PopupWithForm(
-  {
-    sendForm: (inputValues) => {
-      console.log(inputValues);
-    },
-  },
-  "#popup-profile"
-);
-popUpProfile.setEventListeners();
-editProfileButton.addEventListener("click", () => {
-  popUpProfile.open();
-});
 
 // Detector de eventos para añadir nueva imagen
 // addImageButton.addEventListener("click", function () {
@@ -97,37 +85,5 @@ editProfileButton.addEventListener("click", () => {
 //   photoSection.prepend(cardElement);
 //   closePopUp(popUpAddPost);
 // });
-
-const popUpAddPost = new PopupWithForm(
-  {
-    sendForm: (inputValues) => {
-      const newCard = new Card(
-        {
-          text: inputValues.name,
-          image: inputValues.link,
-          handleCardClick: () => {
-            const newImagePopup = new PopupWithImage(
-              {
-                place: inputValues.name,
-                image: inputValues.link,
-              },
-              "#popup-image"
-            );
-            newImagePopup.setEventListeners();
-            newImagePopup.open();
-          },
-        },
-        "#cards"
-      );
-      const cardElement = newCard.generateCard();
-      document.querySelector(".photos").prepend(cardElement);
-    },
-  },
-  "#popup-add"
-);
-popUpAddPost.setEventListeners();
-addImageButton.addEventListener("click", () => {
-  popUpAddPost.open();
-});
 
 export { openPopUp };
