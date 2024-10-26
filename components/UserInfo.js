@@ -4,7 +4,18 @@ export default class UserInfo {
     this._userJob = userJob;
   }
 
-  getUserInfo() {}
+  // Genera objeto con información actual del usuario
+  getUserInfo() {
+    this._info = {
+      name: this._userName.textContent,
+      job: this._userJob.textContent,
+    };
 
-  setUserInfo() {}
+    return this._info;
+  }
+
+  setUserInfo(name, job) {
+    this._userName.textContent = name;
+    this._userJob.textContent = job;
+  }
 }

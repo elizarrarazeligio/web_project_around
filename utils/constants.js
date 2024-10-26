@@ -2,6 +2,10 @@
 const editProfileButton = document.querySelector(".profile__edit");
 const addImageButton = document.querySelector(".profile__add");
 
+// Inputs para PopUp Editar Perfil
+const nameInput = document.querySelector(".form__input_type_name");
+const jobInput = document.querySelector(".form__input_type_job");
+
 // Elementos del marcado a modificar
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__hobby");
@@ -58,4 +62,6 @@ export {
   formList,
   configParameters,
   newValidations,
+  nameInput,
+  jobInput,
 };
