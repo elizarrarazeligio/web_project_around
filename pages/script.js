@@ -1,10 +1,10 @@
 // Importar clases y constantes JS
-import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import { createCard } from "../utils/utils.js";
 import {
   editProfileButton,
   addImageButton,
@@ -18,30 +18,17 @@ import {
   jobInput,
 } from "../utils/constants.js";
 
+// Generación de instancia para PopUp de imágenes
+const newImagePopup = new PopupWithImage("#popup-image");
+newImagePopup.setEventListeners();
+
 // Generación de cartas iniciales de sección de fotos
 // Acoplamiento débil (Loose Coupling)
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (cardItem) => {
-      const newCard = new Card(
-        {
-          text: cardItem.name,
-          image: cardItem.link,
-          handleCardClick: () => {
-            const newImagePopup = new PopupWithImage(
-              {
-                place: cardItem.name,
-                image: cardItem.link,
-              },
-              "#popup-image"
-            );
-            newImagePopup.setEventListeners();
-            newImagePopup.open();
-          },
-        },
-        "#cards"
-      );
+      const newCard = createCard(cardItem.name, cardItem.link);
       const cardElement = newCard.generateCard();
       cardList.addItem(cardElement);
     },
@@ -84,24 +71,7 @@ editProfileButton.addEventListener("click", () => {
 const popUpAddPost = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      const newCard = new Card(
-        {
-          text: inputValues.name,
-          image: inputValues.link,
-          handleCardClick: () => {
-            const newImagePopup = new PopupWithImage(
-              {
-                place: inputValues.name,
-                image: inputValues.link,
-              },
-              "#popup-image"
-            );
-            newImagePopup.setEventListeners();
-            newImagePopup.open();
-          },
-        },
-        "#cards"
-      );
+      const newCard = createCard(inputValues.name, inputValues.link);
       const cardElement = newCard.generateCard();
       document.querySelector(".photos").prepend(cardElement);
     },
