@@ -1,13 +1,13 @@
 import Card from "../components/Card.js";
 
 // Función para creación de instancias de clase Card
-function createCard(name, link) {
+function createCard(name, link, popupInstance) {
   const newCard = new Card(
     {
       text: name,
       image: link,
       handleCardClick: () => {
-        newImagePopup.open({
+        popupInstance.open({
           place: name,
           image: link,
         });

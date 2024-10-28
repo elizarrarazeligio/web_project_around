@@ -1,10 +1,12 @@
+import "./styles/index.css";
+
 // Importar clases y constantes JS
-import FormValidator from "../components/FormValidator.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import Section from "../components/Section.js";
-import UserInfo from "../components/UserInfo.js";
-import { createCard } from "../utils/utils.js";
+import FormValidator from "./components/FormValidator.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import Section from "./components/Section.js";
+import UserInfo from "./components/UserInfo.js";
+import { createCard } from "./utils/utils.js";
 import {
   editProfileButton,
   addImageButton,
@@ -16,7 +18,7 @@ import {
   newValidations,
   nameInput,
   jobInput,
-} from "../utils/constants.js";
+} from "./utils/constants.js";
 
 // Generación de instancia para PopUp de imágenes
 const newImagePopup = new PopupWithImage("#popup-image");
@@ -28,7 +30,7 @@ const cardList = new Section(
   {
     items: initialCards,
     renderer: (cardItem) => {
-      const newCard = createCard(cardItem.name, cardItem.link);
+      const newCard = createCard(cardItem.name, cardItem.link, newImagePopup);
       const cardElement = newCard.generateCard();
       cardList.addItem(cardElement);
     },
@@ -71,7 +73,11 @@ editProfileButton.addEventListener("click", () => {
 const popUpAddPost = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      const newCard = createCard(inputValues.name, inputValues.link);
+      const newCard = createCard(
+        inputValues.name,
+        inputValues.link,
+        newImagePopup
+      );
       const cardElement = newCard.generateCard();
       document.querySelector(".photos").prepend(cardElement);
     },
