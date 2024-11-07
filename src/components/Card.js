@@ -40,12 +40,6 @@ export default class Card {
       });
 
     this._element
-      .querySelector(".photos__trash")
-      .addEventListener("click", () => {
-        this._handleDeleteButton();
-      });
-
-    this._element
       .querySelector(".photos__image")
       .addEventListener("click", () => {
         this._handleCardClick();
@@ -55,10 +49,5 @@ export default class Card {
   // Funcionalidad del botón Like
   _handleLikeButton(evt) {
     evt.target.classList.toggle("photos__like_active");
-  }
-
-  // Funcionalidad del botón Delete
-  _handleDeleteButton() {
-    this._element.remove();
   }
 }

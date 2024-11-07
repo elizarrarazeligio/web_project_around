@@ -4,6 +4,7 @@ import "./styles/index.css";
 import FormValidator from "./components/FormValidator.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithConfirmation from "./components/PopupWithConfirmation.js";
 import Section from "./components/Section.js";
 import UserInfo from "./components/UserInfo.js";
 import { createCard } from "./utils/utils.js";
@@ -18,6 +19,7 @@ import {
   newValidations,
   nameInput,
   jobInput,
+  userImageEdit,
 } from "./utils/constants.js";
 
 // Generación de instancia para PopUp de imágenes
@@ -89,4 +91,14 @@ addImageButton.addEventListener("click", () => {
   popUpAddPost.open();
   // Función para validación al abrir formulario
   newValidations[1].enableValidation();
+});
+
+// Generación de PopUp para borrar tarjetas
+const popUpDeletePost = new PopupWithConfirmation("#popup-delete");
+popUpDeletePost.setEventListeners();
+// Detector de eventos para borrar imágenes
+document.addEventListener("click", (evt) => {
+  if (evt.target.classList == "photos__trash") {
+    popUpDeletePost.open(evt.target);
+  }
 });
