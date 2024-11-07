@@ -29,11 +29,19 @@
 
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/profile1.jpg')%>"
-            alt="Foto de perfil del usuario"
-            class="profile__image"
-          />
+          <div class="profile__image">
+            <img
+              src="<%=require('./images/profile1.jpg')%>"
+              alt="Foto de perfil del usuario"
+              class="profile__image-user"
+            />
+            <img
+              src="<%=require('./images/edit_icon.svg')%>"
+              alt="Editar perfil"
+              class="profile__image-edit"
+            />
+          </div>
+
           <div class="profile__info">
             <div class="profile__heading">
               <h1 class="profile__name">Jacques Cousteau</h1>

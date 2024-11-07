@@ -10,14 +10,33 @@
 
 .profile__image {
   width: 13.636%;
-  height: 13.636%;
+  position: relative;
+  transition: all 0.3s ease;
   border-radius: 50%;
 }
 
 .profile__image:hover {
   opacity: 0.2;
   cursor: pointer;
-  background-image: url("../images/logo.svg");
+}
+
+.profile__image-user {
+  border-radius: 50%;
+  width: 100%;
+  position: relative;
+}
+
+.profile__image-edit {
+  position: absolute;
+  top: calc(50% - 13px);
+  left: calc(50% - 13px);
+  width: 26px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.profile__image:hover .profile__image-edit {
+  opacity: 1;
 }
 
 .profile__info {
@@ -55,7 +74,8 @@
 }
 
 .profile__edit:hover {
-  opacity: 60%;
+  opacity: 40%;
+  transition: all 0.3s ease;
 }
 
 .profile__edit-image {
@@ -83,7 +103,8 @@
 }
 
 .profile__add:hover {
-  opacity: 60%;
+  opacity: 40%;
+  transition: all 0.3s ease;
 }
 
 .profile__add-image {
@@ -99,7 +120,6 @@
 
   .profile__image {
     width: 20%;
-    height: 20%;
   }
 
   .profile__name {
