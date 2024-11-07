@@ -49,6 +49,7 @@
 
 .profile__heading {
   display: flex;
+  gap: 18px;
 }
 
 .profile__name {
@@ -59,6 +60,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 90%;
 }
 
 .profile__edit {
@@ -68,7 +70,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 18px;
   margin-top: 15px;
   cursor: pointer;
 }
@@ -122,6 +123,14 @@
     width: 20%;
   }
 
+  .profile__info {
+    width: 75%;
+  }
+
+  .profile__heading {
+    gap: 14px;
+  }
+
   .profile__name {
     font-size: 2em;
     line-height: 1.18;
@@ -131,7 +140,6 @@
   .profile__edit {
     width: 21px;
     height: 21px;
-    margin-left: 14px;
     margin-top: 10px;
   }
 
@@ -170,7 +178,12 @@
     padding-top: 30px;
     padding-bottom: 36px;
     margin-left: 0;
-    align-items: center;
+  }
+
+  .profile__heading {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
   }
 
   .profile__name {
@@ -182,7 +195,6 @@
   .profile__edit {
     width: 18px;
     height: 18px;
-    margin-left: 10px;
     margin-top: 4px;
   }
 
@@ -192,10 +204,13 @@
 
   .profile__hobby {
     font-size: 0.875em;
+    width: 100%;
+    text-align: center;
   }
 
   .profile__add {
     margin: 0;
+    width: 282px;
   }
 
   .profile__add-image {
