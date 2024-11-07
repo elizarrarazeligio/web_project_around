@@ -132,6 +132,45 @@
           </div>
         </section>
 
+        <section class="popup" id="popup-delete">
+          <div class="popup__container">
+            <img
+              src="<%=require('./images/close_icon.svg')%>"
+              alt="Botón cerrar formulario"
+              class="popup__close"
+            />
+            <h2 class="popup__title">¿Estás seguro/a?</h2>
+            <button class="form__button popup__button" type="button">Sí</button>
+          </div>
+        </section>
+
+        <section class="popup" id="popup-user">
+          <div class="popup__container">
+            <img
+              src="<%=require('./images/close_icon.svg')%>"
+              alt="Botón cerrar formulario"
+              class="popup__close"
+            />
+            <h2 class="popup__title">Cambiar foto de perfil</h2>
+            <form class="form popup__form" novalidate>
+              <fieldset class="form__format">
+                <input
+                  id="user-input"
+                  class="form__input form__input_type_user"
+                  type="url"
+                  name="user"
+                  placeholder="URL de foto de perfil"
+                  minlength="2"
+                  maxlength="40"
+                  required
+                />
+                <span class="form__input-error user-input-error"></span>
+              </fieldset>
+              <button class="form__button" type="submit">Guardar</button>
+            </form>
+          </div>
+        </section>
+
         <section class="popup" id="popup-image">
           <div class="popup__content">
             <img

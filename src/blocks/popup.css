@@ -28,7 +28,7 @@
   background-color: white;
   color: black;
   width: 430px;
-  height: 330px;
+  padding: 34px 36px 36px;
   position: fixed;
   border-radius: 10px;
 }
@@ -48,11 +48,10 @@
   font-size: 1.5em;
   font-weight: 900;
   line-height: 1.2104;
-  margin: 34px 0 42px 36px;
 }
 
 .popup__form {
-  margin: 0 auto;
+  margin: 54px auto 0;
 }
 
 .popup__content {
@@ -71,14 +70,22 @@
   line-height: 1.21;
 }
 
+.popup__button {
+  margin-top: 38px;
+}
+
 @media screen and (max-width: 544px) {
   .popup__container {
     width: 282px;
-    height: 322px;
+    padding: 25px 22px 25px;
+  }
+
+  .popup__form {
+    margin: 64px auto 0;
   }
 
   .popup__close {
-    top: -35px;
+    top: -25px;
     right: 0;
     width: 20px;
   }
@@ -86,6 +93,5 @@
   .popup__title {
     font-size: 1.125em;
     line-height: 1.21;
-    margin: 25px 0 76px 22px;
   }
 }
