@@ -15,11 +15,6 @@
   box-shadow: 0px 0px 25px 0px #00000026;
 }
 
-#popup-delete {
-  display: flex;
-  opacity: 1;
-}
-
 .popup_opened {
   display: flex;
   opacity: 1;
