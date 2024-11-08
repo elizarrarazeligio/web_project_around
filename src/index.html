@@ -208,11 +208,14 @@
         />
         <div class="photos__heading">
           <h2 class="photos__place"></h2>
-          <img
-            class="photos__like"
-            src="<%=require('./images/boton_like.svg')%>"
-            alt="Botón de Like"
-          />
+          <div class="photos__likes">
+            <img
+              class="photos__like"
+              src="<%=require('./images/boton_like.svg')%>"
+              alt="Botón de Like"
+            />
+            <span class="photos__like-number">0</span>
+          </div>
         </div>
       </div>
     </template>
