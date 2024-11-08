@@ -29,11 +29,19 @@
 
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/profile1.jpg')%>"
-            alt="Foto de perfil del usuario"
-            class="profile__image"
-          />
+          <div class="profile__image">
+            <img
+              src="<%=require('./images/profile1.jpg')%>"
+              alt="Foto de perfil del usuario"
+              class="profile__image-user"
+            />
+            <img
+              src="<%=require('./images/edit_icon.svg')%>"
+              alt="Editar perfil"
+              class="profile__image-edit"
+            />
+          </div>
+
           <div class="profile__info">
             <div class="profile__heading">
               <h1 class="profile__name">Jacques Cousteau</h1>
@@ -47,6 +55,7 @@
             </div>
             <h2 class="profile__hobby">Explorador</h2>
           </div>
+
           <div class="profile__add">
             <img
               src="<%=require('./images/boton_mas.svg')%>"
@@ -160,8 +169,6 @@
                   type="url"
                   name="user"
                   placeholder="URL de foto de perfil"
-                  minlength="2"
-                  maxlength="40"
                   required
                 />
                 <span class="form__input-error user-input-error"></span>
@@ -201,11 +208,14 @@
         />
         <div class="photos__heading">
           <h2 class="photos__place"></h2>
-          <img
-            class="photos__like"
-            src="<%=require('./images/boton_like.svg')%>"
-            alt="Botón de Like"
-          />
+          <div class="photos__likes">
+            <img
+              class="photos__like"
+              src="<%=require('./images/boton_like.svg')%>"
+              alt="Botón de Like"
+            />
+            <span class="photos__like-number">0</span>
+          </div>
         </div>
       </div>
     </template>
