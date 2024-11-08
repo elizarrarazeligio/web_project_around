@@ -1,16 +1,30 @@
 export default class Api {
-  constructor() {}
-}
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
 
-fetch("https://around.nomoreparties.co/v1/web-es-cohort-17/cards", {
-  headers: {
-    authorization: "f05ef4e2-b711-4c0d-bffb-160d98715bd3",
-  },
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err.status);
-  });
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    );
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    );
+  }
+}

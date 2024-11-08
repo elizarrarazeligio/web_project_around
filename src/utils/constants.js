@@ -1,7 +1,7 @@
 // Botones para editar perfil y añadir imágenes
 const editProfileButton = document.querySelector(".profile__edit");
 const addImageButton = document.querySelector(".profile__add");
-const userImage = document.querySelector(".profile__image");
+const userImage = document.querySelector(".profile__image-user");
 
 // Inputs para PopUp Editar Perfil
 const nameInput = document.querySelector(".form__input_type_name");
