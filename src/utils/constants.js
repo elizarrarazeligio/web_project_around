@@ -1,7 +1,7 @@
 // Botones para editar perfil y añadir imágenes
 const editProfileButton = document.querySelector(".profile__edit");
 const addImageButton = document.querySelector(".profile__add");
-const userImageEdit = document.querySelector(".profile__image");
+const userImage = document.querySelector(".profile__image");
 
 // Inputs para PopUp Editar Perfil
 const nameInput = document.querySelector(".form__input_type_name");
@@ -51,7 +51,7 @@ const configParameters = {
   errorSpanText: "form__input-error_active",
 };
 
-// Array vacío para cada instancia de FromValidator
+// Array vacío para cada instancia de FormValidator
 let newValidations = [];
 
 export {
@@ -65,5 +65,5 @@ export {
   newValidations,
   nameInput,
   jobInput,
-  userImageEdit,
+  userImage,
 };

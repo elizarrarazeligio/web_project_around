@@ -19,7 +19,7 @@ import {
   newValidations,
   nameInput,
   jobInput,
-  userImageEdit,
+  userImage,
 } from "./utils/constants.js";
 
 // Generación de instancia para PopUp de imágenes
@@ -101,4 +101,20 @@ document.addEventListener("click", (evt) => {
   if (evt.target.classList == "photos__trash") {
     popUpDeletePost.open(evt.target);
   }
+});
+
+// Generación de PopUp para cambiar Foto de Perfil
+const popUpUserImage = new PopupWithForm(
+  {
+    sendForm: (inputValues) => {
+      userImage.querySelector(".profile__image-user").src = inputValues.user;
+    },
+  },
+  "#popup-user"
+);
+popUpUserImage.setEventListeners();
+userImage.addEventListener("click", () => {
+  popUpUserImage.open();
+  // Función para validación de formulario
+  newValidations[2].enableValidation();
 });
