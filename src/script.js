@@ -119,13 +119,20 @@ editProfileButton.addEventListener("click", () => {
 const popUpAddPost = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      const newCard = createCard(
-        inputValues.name,
-        inputValues.link,
-        newImagePopup
-      );
-      const cardElement = newCard.generateCard();
-      document.querySelector(".photos").prepend(cardElement);
+      api
+        .addNewCard(inputValues.name, inputValues.link)
+        .then((newPostInfo) => {
+          const newCard = createCard(
+            newPostInfo.name,
+            newPostInfo.link,
+            newImagePopup
+          );
+          const cardElement = newCard.generateCard();
+          document.querySelector(".photos").prepend(cardElement);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   "#popup-add"
