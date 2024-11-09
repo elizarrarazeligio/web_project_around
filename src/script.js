@@ -1,3 +1,4 @@
+// Importación de hojas de estilos
 import "./styles/index.css";
 
 // Importar clases y constantes JS
@@ -92,7 +93,14 @@ const userInfo = new UserInfo({
 const popUpProfile = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      userInfo.setUserInfo(inputValues.name, inputValues.about);
+      api
+        .editUserInfo(inputValues.name, inputValues.about)
+        .then((newUserInfo) => {
+          userInfo.setUserInfo(newUserInfo.name, newUserInfo.about);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   "#popup-profile"

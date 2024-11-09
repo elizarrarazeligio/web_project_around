@@ -4,6 +4,20 @@ export default class Api {
     this._headers = headers;
   }
 
+  // Función Promise para obtener información inicial de usuario del servidor
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    );
+  }
+
+  // Función Promise para obtener cartas iniciales del servidor
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
       (res) => {
@@ -16,15 +30,21 @@ export default class Api {
     );
   }
 
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
-      (res) => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Error: ${res.status}`);
+  //Función Promise para editar información de usuario
+  editUserInfo(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
       }
-    );
+
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 }
