@@ -1,5 +1,6 @@
 // Importación de hojas de estilos
 import "./styles/index.css";
+import trashIcon from "./images/trash.png";
 
 // Importar clases y constantes JS
 import FormValidator from "./components/FormValidator.js";
@@ -64,6 +65,11 @@ api
             newImagePopup
           );
           const cardElement = newCard.generateCard();
+
+          // Inserta ícono de borrar solamente a tarjetas propias
+          if (cardItem.owner._id === "bbec80a71f167775eb90ff6c") {
+            cardElement.querySelector(".photos__trash").src = trashIcon;
+          }
           cardList.addItem(cardElement);
         },
       },
