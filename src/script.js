@@ -14,7 +14,6 @@ import {
   addImageButton,
   profileName,
   profileJob,
-  initialCards,
   formList,
   configParameters,
   newValidations,
@@ -49,20 +48,34 @@ api
 const newImagePopup = new PopupWithImage("#popup-image");
 newImagePopup.setEventListeners();
 
-// Generación de cartas iniciales de sección de fotos
+// Generación de cartas iniciales obtenidas del servidor
 // Acoplamiento débil (Loose Coupling)
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: (cardItem) => {
-      const newCard = createCard(cardItem.name, cardItem.link, newImagePopup);
-      const cardElement = newCard.generateCard();
-      cardList.addItem(cardElement);
-    },
-  },
-  ".photos"
-);
-cardList.renderItems();
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    const cardList = new Section(
+      {
+        items: initialCards,
+        renderer: (cardItem) => {
+          const newCard = createCard(
+            cardItem.name,
+            cardItem.link,
+            newImagePopup
+          );
+          const cardElement = newCard.generateCard();
+          cardList.addItem(cardElement);
+        },
+      },
+      ".photos"
+    );
+    return cardList;
+  })
+  .then((cardList) => {
+    cardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // Generación de instancias FormValidator para validación de formularios
 formList.forEach((formElement, index) => {
