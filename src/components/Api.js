@@ -65,4 +65,17 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  // Función Promise para borrar tarjeta
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    );
+  }
 }

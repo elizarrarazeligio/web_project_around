@@ -65,7 +65,6 @@ api
             newImagePopup
           );
           const cardElement = newCard.generateCard();
-
           // Inserta ícono de borrar solamente a tarjetas propias
           if (cardItem.owner._id === "bbec80a71f167775eb90ff6c") {
             cardElement.querySelector(".photos__trash").src = trashIcon;
