@@ -29,12 +29,13 @@ function assignDeleteIcon(cardItem, cardElement) {
 
 // Función para procesar las solicitudes del servidor
 function handleServerRequest({ request, handler }) {
-  request
+  return request
     .then((res) => {
-      handler(res);
+      return handler(res);
     })
     .catch((err) => {
       console.log(err);
     });
 }
+
 export { createCard, assignDeleteIcon, handleServerRequest };

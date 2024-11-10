@@ -54,9 +54,9 @@ newImagePopup.setEventListeners();
 
 // Generación de cartas iniciales obtenidas del servidor
 // Acoplamiento débil (Loose Coupling)
-api
-  .getInitialCards()
-  .then((initialCards) => {
+handleServerRequest({
+  request: api.getInitialCards(),
+  handler: (initialCards) => {
     const cardList = new Section(
       {
         items: initialCards,
@@ -75,13 +75,10 @@ api
       ".photos"
     );
     return cardList;
-  })
-  .then((cardList) => {
-    cardList.renderItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  },
+}).then((cardList) => {
+  cardList.renderItems();
+});
 
 // Generación de instancias FormValidator para validación de formularios
 formList.forEach((formElement, index) => {
@@ -98,14 +95,12 @@ const userInfo = new UserInfo({
 const popUpProfile = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      api
-        .editUserInfo(inputValues.name, inputValues.about)
-        .then((newUserInfo) => {
+      handleServerRequest({
+        request: api.editUserInfo(inputValues.name, inputValues.about),
+        handler: (newUserInfo) => {
           userInfo.setUserInfo(newUserInfo.name, newUserInfo.about);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        },
+      });
     },
   },
   "#popup-profile"
@@ -124,9 +119,9 @@ editProfileButton.addEventListener("click", () => {
 const popUpAddPost = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      api
-        .addNewCard(inputValues.name, inputValues.link)
-        .then((newPostInfo) => {
+      handleServerRequest({
+        request: api.addNewCard(inputValues.name, inputValues.link),
+        handler: (newPostInfo) => {
           const newCard = createCard(
             newPostInfo.name,
             newPostInfo.link,
@@ -135,10 +130,8 @@ const popUpAddPost = new PopupWithForm(
           const cardElement = newCard.generateCard();
           assignDeleteIcon(newPostInfo, cardElement);
           document.querySelector(".photos").prepend(cardElement);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        },
+      });
     },
   },
   "#popup-add"
@@ -153,10 +146,12 @@ addImageButton.addEventListener("click", () => {
 // Generación de PopUp para borrar tarjetas
 const popUpDeletePost = new PopupWithConfirmation("#popup-delete", {
   deleteFunction: (id) => {
-    api
-      .deleteCard(id)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    handleServerRequest({
+      request: api.deleteCard(id),
+      handler: (res) => {
+        console.log(res);
+      },
+    });
   },
 });
 popUpDeletePost.setEventListeners();
