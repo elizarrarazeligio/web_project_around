@@ -27,4 +27,14 @@ function assignDeleteIcon(cardItem, cardElement) {
   }
 }
 
-export { createCard, assignDeleteIcon };
+// Función para procesar las solicitudes del servidor
+function handleServerRequest({ request, handler }) {
+  request
+    .then((res) => {
+      handler(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+export { createCard, assignDeleteIcon, handleServerRequest };

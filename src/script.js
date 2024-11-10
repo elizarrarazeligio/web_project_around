@@ -9,7 +9,11 @@ import PopupWithConfirmation from "./components/PopupWithConfirmation.js";
 import Section from "./components/Section.js";
 import UserInfo from "./components/UserInfo.js";
 import Api from "./components/Api.js";
-import { createCard, assignDeleteIcon } from "./utils/utils.js";
+import {
+  createCard,
+  assignDeleteIcon,
+  handleServerRequest,
+} from "./utils/utils.js";
 import {
   editProfileButton,
   addImageButton,
@@ -33,17 +37,16 @@ const api = new Api({
 });
 
 // Consigue la información del usuario del servidor
-api
-  .getUserInfo()
-  .then((userServerInfo) => {
+// api
+handleServerRequest({
+  request: api.getUserInfo(),
+  handler: (userServerInfo) => {
     profileName.textContent = userServerInfo.name;
     profileJob.textContent = userServerInfo.about;
     userImage.onload;
     userImage.src = userServerInfo.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  },
+});
 
 // Generación de instancia para PopUp de imágenes
 const newImagePopup = new PopupWithImage("#popup-image");
