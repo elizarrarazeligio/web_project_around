@@ -1,6 +1,5 @@
 // Importación de hojas de estilos
 import "./styles/index.css";
-import trashIcon from "./images/trash.png";
 
 // Importar clases y constantes JS
 import FormValidator from "./components/FormValidator.js";
@@ -10,7 +9,7 @@ import PopupWithConfirmation from "./components/PopupWithConfirmation.js";
 import Section from "./components/Section.js";
 import UserInfo from "./components/UserInfo.js";
 import Api from "./components/Api.js";
-import { createCard } from "./utils/utils.js";
+import { createCard, assignDeleteIcon } from "./utils/utils.js";
 import {
   editProfileButton,
   addImageButton,
@@ -66,9 +65,7 @@ api
           );
           const cardElement = newCard.generateCard();
           // Inserta ícono de borrar solamente a tarjetas propias
-          if (cardItem.owner._id === "bbec80a71f167775eb90ff6c") {
-            cardElement.querySelector(".photos__trash").src = trashIcon;
-          }
+          assignDeleteIcon(cardItem, cardElement);
           cardList.addItem(cardElement);
         },
       },
@@ -133,6 +130,7 @@ const popUpAddPost = new PopupWithForm(
             newImagePopup
           );
           const cardElement = newCard.generateCard();
+          assignDeleteIcon(newPostInfo, cardElement);
           document.querySelector(".photos").prepend(cardElement);
         })
         .catch((err) => {
@@ -150,7 +148,14 @@ addImageButton.addEventListener("click", () => {
 });
 
 // Generación de PopUp para borrar tarjetas
-const popUpDeletePost = new PopupWithConfirmation("#popup-delete");
+const popUpDeletePost = new PopupWithConfirmation("#popup-delete", {
+  deleteFunction: (id) => {
+    api
+      .deleteCard(id)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  },
+});
 popUpDeletePost.setEventListeners();
 // Detector de eventos para borrar imágenes
 document.addEventListener("click", (evt) => {

@@ -68,14 +68,15 @@ export default class Api {
 
   // Función Promise para borrar tarjeta
   deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/`, { headers: this._headers }).then(
-      (res) => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Error: ${res.status}`);
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
       }
-    );
+
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 }
