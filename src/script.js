@@ -166,7 +166,12 @@ document.addEventListener("click", (evt) => {
 const popUpUserImage = new PopupWithForm(
   {
     sendForm: (inputValues) => {
-      userImage.src = inputValues.user;
+      handleServerRequest({
+        request: api.changeProfilePicture(inputValues.user),
+        handler: (res) => {
+          userImage.src = inputValues.user;
+        },
+      });
     },
   },
   "#popup-user"
