@@ -1,9 +1,10 @@
 // Clase Card para generación de imágenes
 export default class Card {
-  constructor({ text, image, handleCardClick }, cardSelector) {
+  constructor({ text, image, handleCardClick, handleLike }, cardSelector) {
     this._text = text;
     this._image = image;
     this._handleCardClick = handleCardClick;
+    this._handleLike = handleLike;
     this._cardSelector = cardSelector;
   }
 
@@ -49,5 +50,6 @@ export default class Card {
   // Funcionalidad del botón Like
   _handleLikeButton(evt) {
     evt.target.classList.toggle("photos__like_active");
+    this._handleLike(evt);
   }
 }

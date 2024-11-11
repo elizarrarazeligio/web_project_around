@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -96,4 +96,41 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  // Función Promise para añadir Like a la publicación
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  // Función para borrar Like a la publicación
+  removeLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
+
+// Creación de instancia de Api para solicitudes a servidor
+export const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/web-es-cohort-17",
+  headers: {
+    authorization: "f05ef4e2-b711-4c0d-bffb-160d98715bd3",
+    "Content-Type": "application/json",
+  },
+});

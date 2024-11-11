@@ -8,10 +8,11 @@ import PopupWithImage from "./components/PopupWithImage.js";
 import PopupWithConfirmation from "./components/PopupWithConfirmation.js";
 import Section from "./components/Section.js";
 import UserInfo from "./components/UserInfo.js";
-import Api from "./components/Api.js";
+import { api } from "./components/Api.js";
 import {
   createCard,
   assignDeleteIcon,
+  assignLikeIcon,
   handleServerRequest,
 } from "./utils/utils.js";
 import {
@@ -26,15 +27,6 @@ import {
   jobInput,
   userImage,
 } from "./utils/constants.js";
-
-// Creación de instancia de Api para solicitudes a servidor
-const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/web-es-cohort-17",
-  headers: {
-    authorization: "f05ef4e2-b711-4c0d-bffb-160d98715bd3",
-    "Content-Type": "application/json",
-  },
-});
 
 // Consigue la información del usuario del servidor
 // api
@@ -64,11 +56,17 @@ handleServerRequest({
           const newCard = createCard(
             cardItem.name,
             cardItem.link,
-            newImagePopup
+            newImagePopup,
+            cardItem._id
           );
           const cardElement = newCard.generateCard();
+
+          // Inserta el número de Likes desde el servidor
+          assignLikeIcon(cardItem, cardElement);
           // Inserta ícono de borrar solamente a tarjetas propias
           assignDeleteIcon(cardItem, cardElement);
+
+          cardElement.id = cardItem._id;
           cardList.addItem(cardElement);
         },
       },
@@ -128,7 +126,10 @@ const popUpAddPost = new PopupWithForm(
             newImagePopup
           );
           const cardElement = newCard.generateCard();
+
+          assignLikeIcon(cardItem, cardElement);
           assignDeleteIcon(newPostInfo, cardElement);
+
           document.querySelector(".photos").prepend(cardElement);
         },
       });
@@ -168,7 +169,7 @@ const popUpUserImage = new PopupWithForm(
     sendForm: (inputValues) => {
       handleServerRequest({
         request: api.changeProfilePicture(inputValues.user),
-        handler: (res) => {
+        handler: () => {
           userImage.src = inputValues.user;
         },
       });
