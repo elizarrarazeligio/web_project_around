@@ -123,11 +123,12 @@ const popUpAddPost = new PopupWithForm(
           const newCard = createCard(
             newPostInfo.name,
             newPostInfo.link,
-            newImagePopup
+            newImagePopup,
+            newPostInfo._id
           );
           const cardElement = newCard.generateCard();
 
-          assignLikeIcon(cardItem, cardElement);
+          assignLikeIcon(newPostInfo, cardElement);
           assignDeleteIcon(newPostInfo, cardElement);
 
           document.querySelector(".photos").prepend(cardElement);
