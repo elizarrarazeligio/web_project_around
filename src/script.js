@@ -98,7 +98,7 @@ const popUpProfile = new PopupWithForm(
         handler: (newUserInfo) => {
           userInfo.setUserInfo(newUserInfo.name, newUserInfo.about);
         },
-      });
+      }).finally(() => popUpProfile.close());
     },
   },
   "#popup-profile"
@@ -131,9 +131,10 @@ const popUpAddPost = new PopupWithForm(
           assignLikeIcon(newPostInfo, cardElement);
           assignDeleteIcon(newPostInfo, cardElement);
 
+          cardElement.id = newPostInfo._id;
           document.querySelector(".photos").prepend(cardElement);
         },
-      });
+      }).finally(() => popUpAddPost.close());
     },
   },
   "#popup-add"
@@ -173,7 +174,7 @@ const popUpUserImage = new PopupWithForm(
         handler: () => {
           userImage.src = inputValues.user;
         },
-      });
+      }).finally(() => popUpUserImage.close());
     },
   },
   "#popup-user"
