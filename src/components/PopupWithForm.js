@@ -23,6 +23,7 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._popup.querySelector(".form").reset();
+    this._popup.querySelector(".form__button").textContent = "Guardar";
   }
 
   // Añade al método padre los siguientes detectores de eventos:
@@ -35,6 +36,7 @@ export default class PopupWithForm extends Popup {
       .addEventListener("click", (evt) => {
         evt.preventDefault();
         this._sendForm(this._getInputValues());
+        this._popup.querySelector(".form__button").textContent = "Guardando...";
       });
   }
 }
