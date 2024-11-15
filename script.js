@@ -1,6 +1,3 @@
-// Importación de hojas de estilos
-import "./styles/index.css";
-
 // Importar clases y constantes JS
 import FormValidator from "./components/FormValidator.js";
 import PopupWithForm from "./components/PopupWithForm.js";
